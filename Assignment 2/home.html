@@ -1,0 +1,86 @@
+﻿<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tushar Singh | Home</title>
+  <style>
+    body {
+      background-image: url('file:///C:/Users/admin/Downloads/119568468-hill-station-road-sunset-highway.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .content {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .animated-text {
+      font-size: 30px;
+      border-right: 3px solid #fff;
+      height: 40px;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 3s steps(20, end) infinite, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      0% { width: 0; }
+      40% { width: 100%; }
+      60% { width: 100%; }
+      100% { width: 0; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .nav-button {
+      margin: 30px 10px 0;
+      padding: 12px 25px;
+      background-color: #00bcd4;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .nav-button:hover {
+      background-color: #0097a7;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Tushar Singh</h1>
+    <div class="animated-text" id="typing-text"></div>
+    <a href="index.html" class="nav-button">Back</a>
+    <a href="about.html" class="nav-button">Next</a>
+  </div>
+
+  <script>
+    const phrases = ["Web Developer", "Designer"];
+    let index = 0;
+    function changeText() {
+      document.getElementById("typing-text").textContent = phrases[index];
+      index = (index + 1) % phrases.length;
+    }
+    changeText();
+    setInterval(changeText, 3000);
+  </script>
+</body>
+</html>
