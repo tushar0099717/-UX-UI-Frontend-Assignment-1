@@ -1,7 +1,6 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+<html >
 <head>
-  <meta charset="UTF-8">
   <title>Hospital Patient Registration</title>
   <style>
     body {
@@ -112,20 +111,15 @@
 
   <script>
     document.getElementById('patientForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // prevent form refresh
-
-      // Generate random 8-digit Patient ID
+      e.preventDefault(); 
       const patientId = 'PAT' + Math.floor(10000000 + Math.random() * 90000000);
-
-      // Show result
       document.getElementById('result').style.display = 'block';
       document.getElementById('result').innerText = Registration successful! Your Patient ID is: ${patientId};
-
-      // Reset form after submission
       document.getElementById('patientForm').reset();
     });
   </script>
 
 </body>
+
 
 </html>
