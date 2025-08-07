@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,9 +18,47 @@
       height: 100vh;
       color: #fff;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      padding: 0.5em 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .navbar ul {
+      list-style-type: none;
+      display: flex;
+      gap: 2em;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar li {
+      display: inline;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .navbar a:hover,
+    .navbar a.active {
+      background: #00bcd4;
+      color: #fff;
     }
 
     .about-container {
@@ -29,6 +67,7 @@
       max-width: 700px;
       border-radius: 10px;
       position: relative;
+      margin-top: 90px; /* Space for navbar */
     }
 
     h1 {
@@ -40,33 +79,24 @@
       font-size: 18px;
       line-height: 1.6;
     }
-
-    .back-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      background-color: #00bcd4;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .back-button:hover {
-      background-color: #0097a7;
-    }
   </style>
 </head>
 <body>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="About.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
   <div class="about-container">
     <h1>About Me</h1>
     <p>
       Hi, I'm <strong>Tushar Singh</strong>, a passionate Web Developer and Designer.  
       I enjoy building beautiful, responsive websites that provide great user experiences.
-      With a strong foundation in front-end development and an eye for clean, modern design,
+      With a strong foundation in front-end development and an eye for clean, modernh design,
       I aim to bring creative ideas to life through code.
     </p>
     <br>
@@ -75,10 +105,6 @@
       updated with industry trends. Whether it’s HTML, CSS, JavaScript, or design tools —
       I love turning ideas into interactive digital experiences.
     </p>
-
-    <!-- Back to Home Button -->
-    <a href="index.html" class="back-button">Back to Home</a>
   </div>
-
 </body>
 </html>
