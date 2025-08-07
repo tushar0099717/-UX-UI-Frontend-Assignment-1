@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -17,8 +17,44 @@
       background-position: center;
       height: 100vh;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0.5em 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .navbar ul {
+      list-style-type: none;
+      display: flex;
+      gap: 2em;
+    }
+    .navbar li {
+      display: inline;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .navbar a:hover,
+    .navbar a.active {
+      background: #00bcd4;
+      color: #fff;
     }
 
     .contact-container {
@@ -29,6 +65,7 @@
       width: 100%;
       max-width: 500px;
       position: relative;
+      margin-top: 90px; /* Space for navbar */
     }
 
     h2 {
@@ -74,6 +111,14 @@
   </style>
 </head>
 <body>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
 
   <div class="contact-container">
     <h2>Contact Me</h2>
@@ -83,10 +128,8 @@
       <textarea name="message" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
     </form>
-
     <!-- Back to Home Button -->
     <a href="index.html" class="back-button">Back to Home</a>
   </div>
-
 </body>
 </html>
