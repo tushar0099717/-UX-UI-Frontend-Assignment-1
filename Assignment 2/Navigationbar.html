@@ -1,33 +1,82 @@
-
-<html >
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Navigation Bar</title>
-  <style>
-    body
-    .navbar {
-      background-color: rgba(51, 51, 51, 0.9);
-      overflow: hidden;
-    }
-
-    .navbar a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      padding: 14px 20px;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-  </style>
+    <title>Navigation Bar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: rgba(51, 51, 51, 0.9);
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        h1 {
+            font-family: 'Segoe UI Black', sans-serif;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .tool-section, .column, .row {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .content-block {
+            margin: 10px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .two-column {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .column-left, .column-right {
+            width: 48%;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-  <div class="navbar">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    
+    <h1>IBM DATA SCIENCE TOOLS</h1>
 
+    <div class="tool-section">
+        <img src="wp0jdvwi.gif">
+    </div>
+    
+    <div class="column">
+        <img src="wpmkjy2h.jpg">
+    </div>
+    
+    <div class="row">
+        <img src="wp2q660d.jpg">
+    </div>
+    
+    <div class="content-block">
+        A relational database management system designed for high-performance data storage and analytics. It supports AI-driven automation, scalability, and multi-cloud environments.
+    </div>
+    
+    <div class="two-column">
+        <div class="column-left">
+            <p>A powerful statistical analysis and predictive modeling tool used for data analysis, hypothesis testing, and machine learning. It is widely used in research, business intelligence, and social sciences.</p>
+        </div>
+        <div class="column-right">
+            <p>A business intelligence and analytics platform that provides data visualization, reporting, and AI-powered insights. It helps organizations make data-driven decisions with interactive dashboards.</p>
+        </div>
+    </div>
 </body>
 </html>
