@@ -12,16 +12,55 @@
       font-family: Arial, sans-serif;
       height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       color: white;
       text-align: center;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5em 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .navbar ul {
+      list-style-type: none;
+      display: flex;
+      gap: 2em;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar li {
+      display: inline;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .navbar a:hover,
+    .navbar a.active {
+      background: #00bcd4;
+      color: #fff;
     }
 
     .content {
       background: rgba(0, 0, 0, 0.5);
       padding: 40px;
       border-radius: 10px;
+      margin-top: 90px; /* Space for navbar */
     }
 
     h1 {
@@ -48,28 +87,21 @@
     @keyframes blink {
       50% { border-color: transparent; }
     }
-
-    .nav-button {
-      margin: 30px 10px 0;
-      padding: 12px 25px;
-      background-color: #00bcd4;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    .nav-button:hover {
-      background-color: #0097a7;
-    }
   </style>
 </head>
 <body>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
   <div class="content">
     <h1>Tushar Singh</h1>
     <div class="animated-text" id="typing-text"></div>
-    <a href="index.html" class="nav-button">Back</a>
-    <a href="about.html" class="nav-button">Next</a>
   </div>
 
   <script>
