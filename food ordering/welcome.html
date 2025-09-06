@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to FoodZone</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092'); /* Replace with your own */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      background-blend-mode: darken;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background-color: #ff5722;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #e64a19;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero button {
+        font-size: 1rem;
+        padding: 12px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>Welcome to FoodZone</h1>
+    <p>Your favorite meals delivered hot & fresh!</p>
+    <button onclick="window.location.href='Login.html'">Order Now</button>
+  </section>
+</body>
+</html>

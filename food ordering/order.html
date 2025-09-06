@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorHub - My Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .order-item:hover {
+            transform: scale(1.01);
+            transition: transform 0.3s ease;
+        }
+        .status-preparing { color: #f59e0b; }
+        .status-delivered { color: #10b981; }
+        .status-cancelled { color: #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 shadow-lg">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold">
+                <a href="index.html" class="hover:text-yellow-300 transition">
+                    <i class="fas fa-utensils mr-2"></i>FlavorHub
+                </a>
+            </h1>
+            <nav class="space-x-6 text-lg hidden md:flex">
+                <a href="index.html" class="hover:text-yellow-300 transition">Home</a>
+                <a href="menu.html" class="hover:text-yellow-300 transition">Menu</a>
+                <button id="cart-btn" class="hover:text-yellow-300 transition" onclick="location.href='cart.html'">
+                    <i class="fas fa-shopping-cart text-xl"></i> Cart (<span id="cart-count">0</span>)
+                </button>
+                <a href="orders.html" class="hover:text-yellow-300 transition">Orders</a>
+                <a href="#" class="hover:text-yellow-300 transition">Profile</a>
+            </nav>
+            <button class="md:hidden" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-75 text-white p-4">
+            <a href="index.html" class="block py-2">Home</a>
+            <a href="menu.html" class="block py-2">Menu</a>
+            <a href="cart.html" class="block py-2">Cart</a>
+            <a href="orders.html" class="block py-2 active">Orders</a>
+            <a href="#" class="block py-2">Profile</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <h2 class="text-4xl font-bold mb-6 text-center text-gray-800">My Orders</h2>
+
+        <!-- Empty Orders Message -->
+        <div id="empty-orders" class="text-center py-16 hidden">
+            <i class="fas fa-receipt text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-2xl font-semibold text-gray-600 mb-2">No orders yet</h3>
+            <p class="text-gray-500 mb-6">Start ordering delicious meals from our menu!</p>
+            <a href="menu.html" class="bg-orange-500 text-white py-3 px-6 rounded-lg hover:bg-orange-600 transition">Browse Menu</a>
+        </div>
+
+        <!-- Orders List -->
+        <div id="orders-container" class="space-y-6 hidden">
+            <!-- Sample Order 1 -->
+            <div class="order-item bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Order #12345</h3>
+                        <p class="text-gray-600">Placed on: October 15, 2023 at 2:30 PM</p>
+                    </div>
+                    <span class="status-preparing bg-yellow-100 text-yellow-800 py-1 px-3 rounded-full text-sm font-medium">
+                        <i class="fas fa-clock mr-1"></i>Preparing
+                    </span>
+                </div>
+                <div class="border-t pt-4">
+                    <h4 class="text-lg font-semibold mb-2">Items:</h4>
+                    <ul class="space-y-1">
+                        <li class="flex justify-between">
+                            <span>Buffalo Wings x 2</span>
+                            <span>$25.98</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Mozzarella Sticks x 1</span>
+                            <span>$9.99</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-between mt-4 pt-4 border-t">
+                        <span class="font-semibold">Total:</span>
+                        <span class="font-bold text-lg text-gray-800">$38.96</span>
+                    </div>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <button class="text-orange-500 hover:text-orange-700 font-medium">Reorder</button>
+                    <button class="text-gray-500 hover:text-gray-700 font-medium">View Details</button>
+                </div>
+            </div>
+
+            <!-- Sample Order 2 -->
+            <div class="order-item bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Order #12346</h3>
+                        <p class="text-gray-600">Placed on: October 12, 2023 at 7:15 PM</p>
+                    </div>
+                    <span class="status-delivered bg-green-100 text-green-800 py-1 px-3 rounded-full text-sm font-medium">
+                        <i class="fas fa-check-circle mr-1"></i>Delivered
+                    </span>
+                </div>
+                <div class="border-t pt-4">
+                    <h4 class="text-lg font-semibold mb-2">Items:</h4>
+                    <ul class="space-y-1">
+                        <li class="flex justify-between">
+                            <span>Grilled Steak x 1</span>
+                            <span>$24.99</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Iced Latte x 2</span>
+                            <span>$9.98</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-between mt-4 pt-4 border-t">
+                        <span class="font-semibold">Total:</span>
+                        <span class="font-bold text-lg text-gray-800">$37.96</span>
+                    </div>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <button class="text-orange-500 hover:text-orange-700 font-medium">Reorder</button>
+                    <button class="text-gray-500 hover:text-gray-700 font-medium">View Details</button>
+                </div>
+            </div>
+
+            <!-- Sample Order 3 -->
+            <div class="order-item bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Order #12347</h3>
+                        <p class="text-gray-600">Placed on: October 10, 2023 at 12:45 PM</p>
+                    </div>
+                    <span class="status-delivered bg-green-100 text-green-800 py-1 px-3 rounded-full text-sm font-medium">
+                        <i class="fas fa-check-circle mr-1"></i>Delivered
+                    </span>
+                </div>
+                <div class="border-t pt-4">
+                    <h4 class="text-lg font-semibold mb-2">Items:</h4>
+                    <ul class="space-y-1">
+                        <li class="flex justify-between">
+                            <span>Chicken Alfredo x 1</span>
+                            <span>$16.99</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-between mt-4 pt-4 border-t">
+                        <span class="font-semibold">Total:</span>
+                        <span class="font-bold text-lg text-gray-800">$19.98</span>
+                    </div>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <button class="text-orange-500 hover:text-orange-700 font-medium">Reorder</button>
+                    <button class="text-gray-500 hover:text-gray-700 font-medium">View Details</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 FlavorHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample orders data (in a real app, this would be fetched from a backend)
+        // For demo purposes, we'll show the orders by default
+        const orders = [
+            {
+                id: '12345',
+                date: 'October 15, 2023 at 2:30 PM',
+                status: 'preparing',
+                items: [
+                    { name: 'Buffalo Wings', quantity: 2, price: 12.99 },
+                    { name: 'Mozzarella Sticks', quantity: 1, price: 9.99 }
+                ]
+            },
+            {
+                id: '12346',
+                date: 'October 12, 2023 at 7:15 PM',
+                status: 'delivered',
+                items: [
+                    { name: 'Grilled Steak', quantity: 1, price: 24.99 },
+                    { name: 'Iced Latte', quantity: 2, price: 4.99 }
+                ]
+            },
+            {
+                id: '12347',
+                date: 'October 10, 2023 at 12:45 PM',
+                status: 'delivered',
+                items: [
+                    { name: 'Chicken Alfredo', quantity: 1, price: 16.99 }
+                ]
+            }
+        ];
+
+        function displayOrders() {
+            const ordersContainer = document.getElementById('orders-container');
+            const emptyOrders = document.getElementById('empty-orders');
+
+            if (orders.length === 0) {
+                ordersContainer.classList.add('hidden');
+                emptyOrders.classList.remove('hidden');
+                return;
+            }
+
+            ordersContainer.classList.remove('hidden');
+            emptyOrders.classList.add('hidden');
+
+            // Orders are already rendered in the HTML for demo
+        }
+
+        // Update cart count (simplified, in real app get from localStorage)
+        document.getElementById('cart-count').textContent = JSON.parse(localStorage.getItem('cart') || '[]').length;
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Initialize orders display
+        displayOrders();
+    </script>
+</body>
+</html>
+</content>
+</create_file>

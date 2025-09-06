@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorHub - Your Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .cart-item:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 shadow-lg">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold">
+                <a href="index.html" class="hover:text-yellow-300 transition">
+                    <i class="fas fa-utensils mr-2"></i>FlavorHub
+                </a>
+            </h1>
+            <nav class="space-x-6 text-lg hidden md:flex">
+                <a href="index.html" class="hover:text-yellow-300 transition">Home</a>
+                <a href="menu.html" class="hover:text-yellow-300 transition">Menu</a>
+                <button id="cart-btn" class="hover:text-yellow-300 transition">
+                    <i class="fas fa-shopping-cart text-xl"></i> Cart (<span id="cart-count">0</span>)
+                </button>
+                <a href="#" class="hover:text-yellow-300 transition">Profile</a>
+            </nav>
+            <button class="md:hidden" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-75 text-white p-4">
+            <a href="index.html" class="block py-2">Home</a>
+            <a href="menu.html" class="block py-2">Menu</a>
+            <a href="#" class="block py-2">Profile</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <h2 class="text-4xl font-bold mb-6 text-center text-gray-800">Your Cart</h2>
+
+        <!-- Empty Cart Message -->
+        <div id="empty-cart" class="text-center py-16 hidden">
+            <i class="fas fa-shopping-cart text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-2xl font-semibold text-gray-600 mb-2">Your cart is empty</h3>
+            <p class="text-gray-500 mb-6">Add some delicious items to get started!</p>
+            <a href="menu.html" class="bg-orange-500 text-white py-3 px-6 rounded-lg hover:bg-orange-600 transition">Browse Menu</a>
+        </div>
+
+        <!-- Cart Items -->
+        <div id="cart-items-container" class="space-y-4 hidden">
+            <div id="cart-items-list"></div>
+            
+            <!-- Cart Total -->
+            <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="text-2xl font-bold text-gray-800">Subtotal</h4>
+                    <p class="text-2xl font-bold text-gray-800">$<span id="cart-subtotal">0.00</span></p>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="text-lg font-semibold text-gray-600">Delivery Fee</h4>
+                    <p class="text-lg text-gray-600">$<span id="delivery-fee">2.99</span></p>
+                </div>
+                <hr class="my-4">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="text-3xl font-bold text-gray-800">Total</h4>
+                    <p class="text-3xl font-bold text-orange-500">$<span id="cart-total">0.00</span></p>
+                </div>
+                <button id="checkout-btn" class="w-full bg-green-500 text-white py-4 rounded-lg hover:bg-green-600 transition text-xl font-bold">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 FlavorHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample cart data (in a real app, this would come from localStorage or a backend)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function displayCart() {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartItemsList = document.getElementById('cart-items-list');
+            const emptyCart = document.getElementById('empty-cart');
+            const cartCountEl = document.getElementById('cart-count');
+
+            if (cart.length === 0) {
+                cartItemsContainer.classList.add('hidden');
+                emptyCart.classList.remove('hidden');
+                cartCountEl.textContent = '0';
+                return;
+            }
+
+            cartItemsContainer.classList.remove('hidden');
+            emptyCart.classList.add('hidden');
+            cartItemsList.innerHTML = '';
+            let subtotal = 0;
+            let count = 0;
+
+            cart.forEach((item, index) => {
+                count += item.quantity;
+                subtotal += item.price * item.quantity;
+
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item bg-white rounded-lg shadow-md p-4 transition';
+                itemEl.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${item.image}" alt="Vibrant and realistic image of ${item.name.toLowerCase()} with rich details, garnishes, and appealing presentation on a modern dining setup" class="w-20 h-20 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800">${item.name}</h4>
+                            <p class="text-gray-600">Unit Price: $${item.price.toFixed(2)}</p>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <button onclick="updateQuantity(${index}, -1)" class="bg-gray-200 p-2 rounded-l hover:bg-gray-300"><i class="fas fa-minus"></i></button>
+                                <span class="px-4 py-2">${item.quantity}</span>
+                                <button onclick="updateQuantity(${index}, 1)" class="bg-gray-200 p-2 rounded-r hover:bg-gray-300"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-bold text-gray-800">$${(item.price * item.quantity).toFixed(2)}</p>
+                            <button onclick="removeItem(${index})" class="text-red-500 hover:text-red-700 mt-2"><i class="fas fa-trash"></i> Remove</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsList.appendChild(itemEl);
+            });
+
+            cartCountEl.textContent = count;
+            document.getElementById('cart-subtotal').textContent = subtotal.toFixed(2);
+            const deliveryFee = subtotal > 0 ? 2.99 : 0;
+            document.getElementById('delivery-fee').textContent = deliveryFee.toFixed(2);
+            document.getElementById('cart-total').textContent = (subtotal + deliveryFee).toFixed(2);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            displayCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            displayCart();
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert('Checkout functionality would be implemented here. In a real app, this would redirect to a payment page.');
+        });
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Initialize cart display
+        displayCart();
+    </script>
+</body>
+</html>
+</content>
+</create_file>
